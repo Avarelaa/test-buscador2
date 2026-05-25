@@ -96,6 +96,15 @@
             background: linear-gradient(135deg, #7c3aed 0%, #22d3ee 100%);
         }
 
+        /* --- Ocultar barra de scroll en sub-menu de móviles --- */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         /* --- Menú Móvil con Fondo Sólido --- */
         #mobile-menu {
             position: fixed !important;
@@ -121,14 +130,16 @@
 </head>
 <body class="bg-deep-blue text-slate-300 antialiased font-light overflow-x-hidden">
 
-    <!-- Navegación -->
+<!-- Navegación Principal -->
     <nav class="fixed w-full z-50 glass-nav">
-        <div class="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
+        <!-- Altura optimizada: h-16 en móvil para ahorrar espacio vertical, h-24 en escritorio -->
+        <div class="max-w-7xl mx-auto px-6 h-16 lg:h-24 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <img src="Logo Equify-Transparente-FondoClaro.png" alt="Logo Equify" class="h-14 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <img src="Logo Equify-Transparente-FondoClaro.png" alt="Logo Equify" class="h-10 lg:h-14 w-auto" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
                 <div class="hidden px-3 py-1 bg-white/5 border border-white/10 rounded font-bold text-white text-sm tracking-widest uppercase">Equify</div>
             </div>
             
+            <!-- Menú Central (Sólo Escritorio) -->
             <div class="hidden lg:flex gap-10 text-sm font-bold tracking-[0.1em] uppercase">
                 <a href="#tecnologia" class="hover:text-purple-400 transition-colors">Tecnología</a>
                 <a href="#beneficios" class="hover:text-purple-400 transition-colors">Beneficios</a>
@@ -136,6 +147,7 @@
                 <a href="#equipo" class="hover:text-purple-400 transition-colors">Equipo</a>
             </div>
 
+            <!-- Botones de Acción (Sólo Escritorio) -->
             <div class="hidden lg:flex items-center gap-4">
                 <a href="#login" class="px-5 py-2.5 rounded-full text-sm font-bold tracking-widest border border-white/20 hover:bg-white/5 transition-all uppercase">
                     Log In
@@ -145,12 +157,23 @@
                 </a>
             </div>
 
+            <!-- Botón Menú Móvil -->
             <button class="lg:hidden text-white p-2" id="menu-toggle">
                 <i data-lucide="menu" class="w-8 h-8"></i>
             </button>
         </div>
 
-        <!-- Mobile Menu -->
+        <!-- BARRA FIXED SECUNDARIA EN MÓVIL (Horizontal Scrollable) -->
+        <div class="lg:hidden w-full bg-slate-950/95 backdrop-blur-lg border-b border-white/10 overflow-x-auto no-scrollbar">
+            <div class="flex items-center gap-6 px-6 py-3.5 text-xs font-bold tracking-widest uppercase whitespace-nowrap">
+                <a href="#tecnologia" class="text-slate-400 hover:text-purple-400 active:text-purple-400 transition-colors">Tecnología</a>
+                <a href="#beneficios" class="text-slate-400 hover:text-purple-400 active:text-purple-400 transition-colors">Beneficios</a>
+                <a href="#evidencia" class="text-slate-400 hover:text-purple-400 active:text-purple-400 transition-colors">Evidencia</a>
+                <a href="#equipo" class="text-slate-400 hover:text-purple-400 active:text-purple-400 transition-colors">Equipo</a>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Exclusivo para botones de acceso) -->
         <div id="mobile-menu" class="p-8 lg:hidden">
             <div class="flex justify-between items-center mb-16">
                 <img src="Logo Equify-Transparente-FondoClaro.png" alt="Logo" class="h-12 w-auto">
@@ -158,15 +181,20 @@
                     <i data-lucide="x" class="w-8 h-8"></i>
                 </button>
             </div>
-            <nav class="flex flex-col gap-10 text-2xl font-bold tracking-widest uppercase mb-12">
-                <a href="#tecnologia" class="mobile-link flex items-center justify-between border-b border-white/5 pb-4">Tecnología <i data-lucide="chevron-right"></i></a>
-                <a href="#beneficios" class="mobile-link flex items-center justify-between border-b border-white/5 pb-4">Beneficios <i data-lucide="chevron-right"></i></a>
-                <a href="#evidencia" class="mobile-link flex items-center justify-between border-b border-white/5 pb-4">Evidencia <i data-lucide="chevron-right"></i></a>
-                <a href="#equipo" class="mobile-link flex items-center justify-between border-b border-white/5 pb-4">Equipo <i data-lucide="chevron-right"></i></a>
-            </nav>
-            <div class="flex flex-col gap-5 mt-auto pb-12">
-                <a href="#login" class="mobile-link w-full text-center py-5 rounded-2xl border border-white/20 font-bold uppercase text-base bg-white/5">Log In</a>
-                <a href="#video-demo" class="mobile-link w-full text-center py-5 rounded-2xl bg-primary-purple text-white font-bold uppercase text-base shadow-2xl">Ver Video Demo</a>
+            
+            <div class="flex flex-col gap-6 my-auto">
+                <p class="text-center text-slate-400 text-sm leading-relaxed mb-4">
+                    Accede a tu cuenta clínica de Equify o visualiza la presentación del producto.
+                </p>
+                <a href="#login" class="mobile-link w-full text-center py-5 rounded-2xl border border-white/20 font-bold uppercase tracking-widest text-base bg-white/5 hover:bg-white/10 transition-colors">
+                    Log In
+                </a>
+                <a href="#video-demo" class="mobile-link w-full text-center py-5 rounded-2xl bg-primary-purple text-white font-bold uppercase tracking-widest text-base shadow-2xl hover:bg-purple-600 transition-colors">
+                    Ver Video Demo
+                </a>
+            </div>
+            <div class="text-center text-xs text-slate-600 mt-auto">
+                © 2026 Proyecto Equify.
             </div>
         </div>
     </nav>
@@ -364,7 +392,7 @@
         </div>
     </section>
 
-    <!-- 06 Validación Carrusel -->
+  <!-- 06 Evidencia Carrusel -->
     <section id="evidencia" class="py-32 relative overflow-hidden bg-slate-950">
         <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
             <div class="mb-20">
@@ -395,23 +423,23 @@
                             </div>
                         </div>
 
-                        <!-- Slide 1: Validación Clínica -->
+                        <!-- Slide 1: Validación Clínica (AJUSTE DE CONTENEDORES Y TIPOGRAFÍA PARA EVITAR DESBORDES EN MÓVIL) -->
                         <div class="carousel-slide flex flex-col md:flex-row gap-12 md:gap-16 items-center text-left" id="slide-1">
                             <div class="w-full md:w-2/5 shrink-0">
                                 <img src="Equiteam.jpeg" alt="Validación Clínica" class="rounded-3xl shadow-xl border border-white/10 w-full object-cover">
                             </div>
                             <div class="w-full">
                                 <div class="text-purple-400 mb-8 flex justify-center md:justify-start"><i data-lucide="target" class="w-12 h-12"></i></div>
-                                <h3 class="text-3xl font-bold text-white mb-6 tracking-tight leading-tight">Validación Clínica TRL 5</h3>
-                                <p class="text-lg text-slate-300 mb-10 leading-relaxed font-light">93,3% de concordancia diagnóstica validada en entornos reales junto a expertos de EQUITEAM y el apoyo de iCono UDD.</p>
-                                <div class="grid grid-cols-2 gap-6">
-                                    <div class="px-6 py-5 bg-white/5 border border-white/10 rounded-2xl text-center">
-                                        <p class="text-white font-bold text-3xl">TRL 5</p>
-                                        <p class="text-sm text-slate-500 uppercase font-bold tracking-widest mt-2">Madurez</p>
+                                <h3 class="text-3xl font-bold text-white mb-6">Validación Clínica TRL 5</h3>
+                                <p class="text-lg text-slate-300 mb-10 font-light leading-relaxed">93,3% de concordancia diagnóstica validada en entornos reales junto a expertos de EQUITEAM y el apoyo de iCono UDD.</p>
+                                <div class="grid grid-cols-2 gap-4 sm:gap-6">
+                                    <div class="px-4 py-4 sm:px-6 sm:py-5 bg-white/5 border border-white/10 rounded-2xl text-center">
+                                        <p class="text-white font-bold text-2xl sm:text-3xl">TRL 5</p>
+                                        <p class="text-[10px] sm:text-sm text-slate-500 uppercase font-bold tracking-wider sm:tracking-widest mt-2">Madurez</p>
                                     </div>
-                                    <div class="px-6 py-5 bg-white/5 border border-white/10 rounded-2xl text-center">
-                                        <p class="text-white font-bold text-3xl">93.3%</p>
-                                        <p class="text-sm text-slate-500 uppercase font-bold tracking-widest mt-2">Concordancia</p>
+                                    <div class="px-4 py-4 sm:px-6 sm:py-5 bg-white/5 border border-white/10 rounded-2xl text-center">
+                                        <p class="text-white font-bold text-2xl sm:text-3xl">93.3%</p>
+                                        <p class="text-[10px] sm:text-sm text-slate-500 uppercase font-bold tracking-wider sm:tracking-widest mt-2">Concordancia</p>
                                     </div>
                                 </div>
                             </div>
@@ -566,6 +594,25 @@
         menuToggle.addEventListener('click', openMenu);
         menuClose.addEventListener('click', closeMenu);
         mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+          // Lógica de Smooth Scroll inteligente con Offset para el menú fijo
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
+                if (target) {
+                    const isMobile = window.innerWidth < 1024;
+                    // En móviles el offset es mayor (Header h-16 + Sub-nav h-12 = 112px aprox)
+                    const offset = isMobile ? 124 : 100;
+                    window.scrollTo({
+                        top: target.offsetTop - offset,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
 
         // Lógica del Carrusel
         let currentSlide = 0;
