@@ -539,7 +539,7 @@
         </div>
     </section>
 
-    <!-- 12 Cierre y Contacto -->
+   <!-- 12 Cierre y Contacto (FORMULARIO OPTIMIZADO Y VALIDADO) -->
     <section id="contacto" class="py-40 relative overflow-hidden bg-slate-950 text-center">
         <div class="absolute inset-0 z-0 opacity-10 blur-[100px]">
              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] brand-gradient rounded-full"></div>
@@ -547,13 +547,34 @@
         <div class="max-w-4xl mx-auto px-6 relative z-10">
             <h2 class="text-5xl md:text-6xl font-bold text-white mb-10 leading-tight uppercase tracking-tight">Medicina reactiva a <span class="text-purple-glow italic">prevención inteligente.</span></h2>
             <p class="text-xl text-slate-400 mb-16 max-w-2xl mx-auto italic font-light">"Equify es el primer paso hacia el estándar global del futuro en bienestar equino."</p>
-            <div class="bg-slate-900/50 backdrop-blur-xl border border-white/10 p-12 md:p-16 rounded-[4rem] shadow-2xl mb-16 max-w-2xl mx-auto">
-                <h4 class="text-white font-bold mb-10 uppercase text-sm tracking-widest text-slate-500">Contacto</h4>
-                <div class="grid gap-5">
-                    <input type="text" placeholder="Nombre completo" class="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base focus:outline-none focus:border-purple-500 transition-all text-white placeholder-slate-600 font-light">
-                    <input type="email" placeholder="Correo electrónico" class="bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base focus:outline-none focus:border-purple-500 transition-all text-white placeholder-slate-600 font-light">
-                    <button class="bg-primary-purple text-white px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-[0.2em] hover:scale-[1.02] transition-all shadow-xl shadow-purple-600/20">Quiero Ser Pionero</button>
-                </div>
+            
+            <div id="contact-container" class="bg-slate-900/50 backdrop-blur-xl border border-white/10 p-8 sm:p-12 md:p-16 rounded-[3rem] sm:rounded-[4rem] shadow-2xl mb-16 max-w-2xl mx-auto">
+                <h4 class="text-white font-bold mb-10 uppercase text-sm tracking-widest text-slate-500">Información y Licenciamiento</h4>
+                
+                <form id="contact-form" class="grid gap-5 text-left">
+                    <!-- Input de Nombre (Obligatorio) -->
+                    <div>
+                        <input type="text" id="contact-name" required placeholder="Nombre completo" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base focus:outline-none focus:border-purple-500 transition-all text-white placeholder-slate-600 font-light">
+                    </div>
+                    
+                    <!-- Input de Correo Electrónico (Obligatorio y validación nativa de email) -->
+                    <div>
+                        <input type="email" id="contact-email" required placeholder="Correo electrónico" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base focus:outline-none focus:border-purple-500 transition-all text-white placeholder-slate-600 font-light">
+                    </div>
+                    
+                    <!-- Textarea de Mensaje (Obligatorio, máx 500 caracteres con contador en tiempo real) -->
+                    <div>
+                        <textarea id="contact-message" required maxlength="500" placeholder="Escribe tu mensaje aquí..." rows="4" oninput="updateCharCount(this)" class="w-full bg-white/5 border border-white/10 rounded-2xl px-6 py-4 text-base focus:outline-none focus:border-purple-500 transition-all text-white placeholder-slate-600 font-light h-36 resize-none"></textarea>
+                        <!-- Contador de caracteres -->
+                        <div class="text-right text-xs text-slate-500 mt-2 font-mono">
+                            <span id="char-count">0</span> / 500 caracteres
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary-purple text-white px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-[0.2em] hover:scale-[1.02] transition-all shadow-xl shadow-purple-600/20 text-center">
+                        Quiero Ser Pionero
+                    </button>
+                </form>
             </div>
         </div>
     </section>
